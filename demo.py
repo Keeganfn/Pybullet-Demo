@@ -25,11 +25,10 @@ planeId = p.loadURDF("plane.urdf")
 kuka_arm_path = "kuka_iiwa/model.urdf"
 data_path = os.path.join(pybullet_data.getDataPath(), kuka_arm_path)
 #Loading in the urdf of our Kuka arm at the desired origin position and orientation
-time.sleep(10)
 startPos = [0,0,0]
 startOrientation = p.getQuaternionFromEuler([0,0,0])
 robot_id = p.loadURDF(data_path,startPos, startOrientation, useFixedBase=True)
-time.sleep(10)
+time.sleep(1)
 
 #######################################################
 # Move the arm into first position using Joint Angles #
@@ -40,7 +39,7 @@ num_joints = p.getNumJoints(robot_id)
 #Sets each joint motor controller on the arm to the value we wish to move to 
 for i in range(num_joints):
     #We are using a position controller with a maxVelocity of 1 
-    p.setJointMotorControl2(robot_id, i, p.POSITION_CONTROL, targetPosition=1.5, maxVelocity=1)
+    p.setJointMotorControl2(robot_id, i, p.POSITION_CONTROL, targetPosition=1.3, maxVelocity=1)
 #We then step the simulator for 500 timesteps to allow the robot arm to move to the desired location
 for i in range (500):
     p.stepSimulation()
